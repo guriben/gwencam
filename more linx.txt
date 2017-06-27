@@ -1,0 +1,19 @@
+Record video and audio
+
+https://raspberrypi.stackexchange.com/questions/25962/sync-audio-video-from-pi-camera-usb-microphone
+
+http://www.raspberrypi-spy.co.uk/2014/11/how-to-create-a-raspberry-pi-video-capture-unit-part-1/
+http://www.raspberrypi-spy.co.uk/2014/11/how-to-create-a-raspberry-pi-video-capture-unit-part-2/
+
+
+Audio
+I have a USB microphone and I'm trying to record sound with it. I can see it with lsusb. I chose it in alsamixer, set capture to 100 and auto gain control to off, then saved with sudo alsactl store 1 (1 is the correct card number). Then issued arecord -D plughw:1 --duration=10 -f cd -vv ~/rectest.wav. I played the resulting sound file with aplay ~/rectest.wav but there was no sound. Any ideas?
+
+liste devices: aplay -l
+
+Also
+https://blog.mutsuda.com/raspberry-pi-into-an-audio-spying-device-7a56e7a9090e#.fr4l82xek
+
+and
+http://www.g7smy.co.uk/2013/08/recording-sound-on-the-raspberry-pi/
+

@@ -1,0 +1,17 @@
+https://github.com/guriben/smart-security-camera
+
+
+
+https://www.raspberrypi.org/documentation/usage/camera/raspicam/README.md
+
+https://www.raspberrypi.org/documentation/remote-access/ssh/
+
+http://www.techradar.com/news/computing-components/peripherals/how-to-install-the-raspberry-pi-camera-module-1172034
+
+https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2
+https://www.bouvet.no/bouvet-deler/utbrudd/building-a-motion-activated-security-camera-with-the-raspberry-pi-zero
+
+https://aws.amazon.com/documentation/s3/
+
+http://docs.aws.amazon.com/gettingstarted/latest/awsgsg-intro/gsg-aws-intro.html
+

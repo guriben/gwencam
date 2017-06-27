@@ -1,0 +1,67 @@
+Gwen Cam
+0.1
+
+jessie for zero
+
+sudo raspi-config
+
+Enable the Camera.
+Enable the ssh server (you’ll need this later on to connect to Pi Zero in headless mode - i.e. without a monitor and keyboard attached).
+Enable boot to command line without manual login.
+
+passwd
+
+sudo apt-get update
+sudo apt-get dist-upgrade
+
+wget github.com/Motion-Project/motion/releases/download/release-4.0
+sudo apt-get install gdebi-core
+
+sudo gdebi pi_jessie_motion_4.0.1-1_armhf.deb
+
+mkdir ~/.motion
+cp /etc/motion/motion.conf ~/.motion/motion.conf
+sudo nano ~/.motion/motion.conf
+
+_____>>>
+
+Uncomment the mmalcam_name vc.ril.camera parameter.
+Uncomment target_dir and change it's associated value to ’/home/pi/Documents/motion’
+Ensure that ffmpeg_output_movies is set to 'off'
+Set stream_localhost to ‘off’
+Set webcontrol_localhost to 'off’
+Set width to ‘640’ and height to ‘480’
+Set locate_motion_mode to ‘preview’
+Set locate_motion_style to ‘redbox’
+Set event_gap to '10'
+Set output_pictures to 'center'
+Set quality to '80'
+Set text_changes to 'on'
+
+
+>>>>><<<<<<<
+
+motion -c ~/.motion/motion.conf
+
+<<<<<<<<>>>>>>>
+
+While Motion starts up, key an eye out for any error messages that pop up. Problems can occur if your camera isn't correctly connected or if Motion lacks permissions to create image files.
+
+Note that Motion occasionally fails to start up due to previous Motion processes that have failed to shut down properly and are running in the background. If you suspect this, try running the following:
+
+ps aux | grep motion
+sudo kill -9 [pid]
+
+<<<<<<>>>>>>>>>>
+
+Once Motion is up and running you'll want to check out the video stream. To do this, you'll need the IP address of the Pi Zero along with the port specified by the stream_port parameter from the Motion config file. Go to the address:
+
+http://[IPaddress]:[stream_port]
+and you should see your video stream in the browser.
+
+You can also access Motion's HTML control panel by changing the port to that specified by the webcontrol_port as specified in the Motion config file.  Here you can change configuration options on the fly, stop and start Motion and even take snapshots.
+
+Now you can test the motion detection.  Movement in front of the camera should result in a still image being saved to the directory you specified for the target_dir.  If this is working then your motion activated security camera is almost ready for use!
+
+
+
