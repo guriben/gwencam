@@ -29,9 +29,12 @@ On your (preferably linux) machine:
 * make sure sd mounts: ls -l /dev/mmcblk*
 * note the digit* (0?)
 * ./writeimage.sh -d /dev/mmcblk(0?) -i "/path/to/motioneyeos.img" -n 'aon_name:apn_key' 
-[try etcher.io if failing]
-[TODO: figure out if wpa_supplicant.conf /boot drop is better, and iif so can have multiple apn?]
-[TODO: find out if network drop causes reboots, if so can only has *always on* or can has no checks?]
+
+*[try etcher.io if failing]
+
+*[TODO: figure out if wpa_supplicant.conf /boot drop is better, and iif so can have multiple apn?]
+
+*[TODO: find out if network drop causes reboots, if so can only has *always on* or can has no checks?]
 
 Assemble Zero W with camera, card, and storage as required....Start your access point!...POWER UP!!
 
