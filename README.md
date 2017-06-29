@@ -26,9 +26,8 @@ On your phone:
 On your (preferably linux) machine:
 * format microSD to full capacity
 * download image
-* make sure sd mounts: ls -l /dev/mmcblk*
-* note the digit* (0?)
-* ./writeimage.sh -d /dev/mmcblk(0?) -i "/path/to/motioneyeos.img" -n 'aon_name:apn_key' 
+* blkid
+* ./writeimage.sh -d /dev/mmcblk(0?) -i "/path/to/motioneyeos.img" -n 'apn_name:apn_key' 
 
 *[try etcher.io if failing]
 
