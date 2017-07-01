@@ -4,8 +4,13 @@
 Feel free to edit this document. I will explain git and repo's another time, click on README.md link and then on the little pencil icon to edit....scroll down to the bottom of the page to save/commit the file....you can't break anything that itsn't fixable. :)
 
 ### Hardware
-TODO: kit list
-TODO: assembling
+#### Kit List
+* Pi Zero W (starter kit)
+* Zero2Go (make sure you get a ferrite ring!)
+* Zero4U USB Hub (make sure you get some long 2.5mm nylon screws & washers, and spacers!)
+
+#### TODO: *assembling
+* put the camera cabele in the right way round!...it is fiddly.
 
 ### Software
 Bare minimum:
@@ -17,7 +22,7 @@ Bare minimum:
 * basic admin
 * FOSS
 
-The quickest solution is therefore motionEyeOS. But with a view to either provide customisations to this software or to create something more custom, while adhering to the principles of being decent human beings and sharing cool stuff.
+The quickest solution is therefore basic "Motion". We start there, building on the work of others where possible...But with a view to either provide improvements to this software or to create something more custom, while adhering to the principles of being decent human beings and sharing cool stuff.
 
 ### Basic First Attempt
 On your phone:
@@ -42,30 +47,56 @@ network={
 }
 
 * Now you can unmount the SD card and put it in your Pi Zero W
-* Power on the Pi
+
+* Power on the Pi - use the "usual" USB power connector on the Pi itself, we will configure the Zero2Go in a moment.
+
 * On a PC on the same Wifi Network you configured in "wpa_supplicant.conf", find out the IP address of the pi (it is called 'raspberrypi' or 'raspberrypi-N' where N is a number if you have more than one Pi connected) use something like "Fing" or connect to the router and have a look for it there, note the IP:
 * ssh pi@192.xxx.xx.xxx - where x is the IP, duh :) the password is "raspberry" (without quotes)
 
 Now you are connected to your Pi we need to do some initial configuration.
 * Change default password and make sure you note it down somewhere
-* Make sure the system is up to date, enter this:
+* Make sure the system is up to date.
+* Type or copy paste.....[Shift]+[Insert] is paste on Linux terminal...the following:
 
 sudo apt-get update && sudo apt-get upgrade -y
 
-* when that has finishe, if not prompted to do so, do a restart:
+* when that has finished, if not prompted to do so, do a restart:
 
 sudo reboot now
+
 * When the system reboots, check for the new IP (it might be the same, but check) and this time after "ssh pi@xx.xxx.xx.xxx" use the new password you just set.
-* Just a few more things...now run "sudo raspi-config" and arrow down to Interfaces, press enter and enable Camera and VNC for now (there a couple of prompts for each one, use arrow keys, and tab or enter to move around and select, escape key takes you back one menu).
-* Exit saving changes and then:
+* Just a few more things...now run:
+
+sudo raspi-config
+
+...and arrow down to Interfaces, press enter and enable all of them (there a couple of prompts for each one, use arrow keys, and tab or enter to move around and select, escape key takes you back one menu).
+
+* Exit saving changes and then (you will probably be prompted to do so anyway...but):
 
 sudo reboot now
 
-* Repeat the connection steps before we move onto Motion....
+* Repeat the connection steps before we move onto Zero2Go....
+
+wget http://www.uugear.com/repo/Zero2Go/installZero2Go.sh
+
+* If your Raspberry Pi has internet connection, it will immediately download the script. Now run it with sudo:
+
+sudo sh installZero2Go.sh
+
+This script will copy a file to “/etc/init.d/zero2go”, and register it to run after boot...This time:
+
+sudo shutdown now
+
+* Once powered off. Connect your USB power supply to the Zero2Go this time round. NO OTHER POWER SUPPLIES CONNECTED.
+
+* If the BLUE light does not come on after a couple of seconds, press the black button on the Zero2Go to switch through the power supply modes until they do.
+
+* After a few more seconds, you should see the GREEN indicator light on the Zero and another BLUE light should show on the Zero4U (if you are using one)
 
 Now we need to install Motion *properly* and not quite how I tried to do it.
-* Now you should be logged back into your pi over ssh
-* Type (copy paste.....[Shift]+[Insert] is paste on Linux terminal...) the following:
+
+* You should be logged back into your pi over ssh
+* Use the following command:
 
 wget github.com/Motion-Project/motion/releases/download/release-4.0
 
