@@ -1,16 +1,16 @@
 # gwencam
 
-## Version 0.1 - "Effervescing Elephant"
+## Version 0.2 - "Birdie Hop"
 Feel free to edit this document. I will explain git and repo's another time, click on README.md link and then on the little pencil icon to edit....scroll down to the bottom of the page to save/commit the file....you can't break anything that itsn't fixable. :)
 
 ### Hardware
 #### Kit List
 * Pi Zero W (starter kit)
-* Zero2Go (make sure you get a ferrite ring!)
-* Zero4U USB Hub (make sure you get some long 2.5mm nylon screws & washers, and spacers!)
+* Zero2Go (make sure you get a ferrite ring!) !DEPRECATED - UNTIL SOFTWARE BUG FIXED!
+* Zero4U USB Hub
 
 #### TODO: *assembling
-* put the camera cabele in the right way round!...it is fiddly.
+* put the camera cable in the right way round!...it is fiddly.
 
 ### Software
 Bare minimum:
@@ -37,21 +37,13 @@ On your PC:
 * Download and install Etcher from http://etcher.io
 * Using Etcher, select the unzipped image, and the drive you just formatted and burn it (it wil verify afterwards...so it takes a while)
 * After burning you should be able to see a drive called "boot"
-* In "boot" create a blank file called "ssh" (just a file, no extension, no content)
-* In "boot" create a file called "wpa_supplicant.conf", the contents should be:
-
-network={ 
-   ssid="MY WIFI SSID" 
-   psk="MY WIFI PASSWORD" 
-   key_mgmt=WPA-PSK 
-}
-
+* Copy this file to the "boot" volume: https://github.com/guriben/gwencam/blob/master/ssh
+* Copy this file to the "boot" volume (it can also be placed in /etc/wpa_supplicant/ if you have that path on the sd card: https://github.com/guriben/gwencam/blob/master/wpa_supplicant.conf
 * Now you can unmount the SD card and put it in your Pi Zero W
-
-* Power on the Pi - use the "usual" USB power connector on the Pi itself, we will configure the Zero2Go in a moment.
+* Power on the Pi - use the "usual" USB power connector on the Pi itself, we will not configure the Zero2Go yet.
 
 * On a PC on the same Wifi Network you configured in "wpa_supplicant.conf", find out the IP address of the pi (it is called 'raspberrypi' or 'raspberrypi-N' where N is a number if you have more than one Pi connected) use something like "Fing" or connect to the router and have a look for it there, note the IP:
-* ssh pi@192.xxx.xx.xxx - where x is the IP, duh :) the password is "raspberry" (without quotes)
+* ssh pi@192.xxx.xx.xxx - where x is the IP, duh :) the password is "gwencam1" (without quotes)
 
 Now you are connected to your Pi we need to do some initial configuration.
 * Change default password and make sure you note it down somewhere
@@ -81,18 +73,6 @@ wget http://www.uugear.com/repo/Zero2Go/installZero2Go.sh
 
 * If your Raspberry Pi has internet connection, it will immediately download the script. Now run it with sudo:
 
-sudo sh installZero2Go.sh
-
-This script will copy a file to “/etc/init.d/zero2go”, and register it to run after boot...This time:
-
-sudo shutdown now
-
-* Once powered off. Connect your USB power supply to the Zero2Go this time round. NO OTHER POWER SUPPLIES CONNECTED.
-
-* If the BLUE light does not come on after a couple of seconds, press the black button on the Zero2Go to switch through the power supply modes until they do.
-
-* After a few more seconds, you should see the GREEN indicator light on the Zero and another BLUE light should show on the Zero4U (if you are using one)
-
 Now we need to install Motion *properly* and not quite how I tried to do it.
 
 * You should be logged back into your pi over ssh
@@ -120,29 +100,18 @@ cp /etc/motion/motion.conf ~/.motion/motion.conf
 sudo nano ~/.motion/motion.conf
 * Make the following changes:
 
-Uncomment the mmalcam_name vc.ril.camera parameter.
-
-Uncomment target_dir and change it's associated value to ’/home/pi/Documents/motion’
-
-Ensure that ffmpeg_output_movies is set to 'off'
-
-Set stream_localhost to ‘off’
-
-Set webcontrol_localhost to 'off’
-
-Set width to ‘640’ and height to ‘480’
-
-Set locate_motion_mode to ‘preview’
-
-Set locate_motion_style to ‘redbox’
-
-Set event_gap to '10'
-
-Set output_pictures to 'center'
-
-Set quality to '80'
-
-Set text_changes to 'on'
+* - Uncomment the mmalcam_name vc.ril.camera parameter.
+* - Uncomment target_dir and change it's associated value to ’/home/pi/Documents/motion’
+* - Ensure that ffmpeg_output_movies is set to 'off'
+* - Set stream_localhost to ‘off’
+* - Set webcontrol_localhost to 'off’
+* - Set width to ‘640’ and height to ‘480’
+* - Set locate_motion_mode to ‘preview’
+* - Set locate_motion_style to ‘redbox’
+* - Set event_gap to '10'
+* - Set output_pictures to 'center'
+* - Set quality to '80'
+* - Set text_changes to 'on'
 
 * Save the file
 
