@@ -43,11 +43,11 @@ On your PC:
 * Power on the Pi - use the "usual" USB power connector on the Pi itself, we will not configure the Zero2Go yet.
 
 * On a PC on the same Wifi Network you configured in "wpa_supplicant.conf", find out the IP address of the pi (it is called 'raspberrypi' or 'raspberrypi-N' where N is a number if you have more than one Pi connected) use something like "Fing" or connect to the router and have a look for it there, note the IP:
-* ssh pi@192.xxx.xx.xxx - where x is the IP, duh :) the password is "gwencam1" (without quotes)
+* ssh pi@192.xxx.xx.xxx - where x is the IP, duh :) the *default* password is "raspberry" (without quotes)
 
 Now you are connected to your Pi we need to do some initial configuration.
-* Change default password and make sure you note it down somewhere
-* Make sure the system is up to date.
+* Change default password, we used *gwencam1* for simplicity, to do that just type "passwd" and follow the 2 prompts.
+* Make sure the system is up to date....
 * Type or copy paste.....[Shift]+[Insert] is paste on Linux terminal...the following:
 
 sudo apt-get update && sudo apt-get upgrade -y
